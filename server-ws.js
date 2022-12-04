@@ -163,6 +163,6 @@ wss.on('connection', function (ws, request) {
 //
 // Start the server.
 //
-server.listen(8080, function () {
-    console.log('Listening on http://localhost:8080');
+server.listen(5000, function () {
+    console.log('Listening on http://localhost:5000');
 });
