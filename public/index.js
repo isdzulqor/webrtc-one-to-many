@@ -18,9 +18,21 @@ function createPeer() {
     const peer = new RTCPeerConnection({
         iceServers: [
             {
-                urls: "stun:stun.stunprotocol.org"
-            }
-        ]
+                urls: "stun:openrelay.metered.ca:80"
+            },
+            {
+                urls: "turn:openrelay.metered.ca:80",
+                credential: "openrelayproject",
+                username: "openrelayproject"
+            },
+            {
+                urls: "turn:openrelay.metered.ca:443",
+                username: "openrelayproject",
+                credential: "openrelayproject",
+            },
+            
+        ],
+        iceTransportPolicy: "all"
     });
     peer.onnegotiationneeded = () => handleNegotiationNeededEvent(peer);
 
@@ -29,6 +41,7 @@ function createPeer() {
 
 async function handleNegotiationNeededEvent(peer) {
     const offer = await peer.createOffer();
+    console.log("offer bosque:", JSON.stringify(offer))
     await peer.setLocalDescription(offer);
     const payload = {
         sdp: peer.localDescription
