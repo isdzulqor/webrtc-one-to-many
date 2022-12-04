@@ -38,7 +38,7 @@ async function init() {
 function initWS() {
     if ("WebSocket" in window) {
         // Let us open a web socket
-        return new WebSocket("wss://localhost:8080");
+        return new WebSocket("wss://108.136.184.106:5000");
     } else {
         // The browser doesn't support WebSocket
         alert("WebSocket NOT supported by your Browser!");
